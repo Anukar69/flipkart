@@ -21,6 +21,7 @@ const Wrapper = styled(Box)`
 const Container = styled(Box)`
   display:flex;
   margin-left: 36px;
+  
 
 
   
@@ -32,6 +33,7 @@ const Loginbuttom = styled(Button)`
   padding: 5px 40px;
   border-radius: 2px;
   box-shadow: none;
+ 
   font-weight: 600;
  
   height: 40px;
@@ -49,12 +51,13 @@ const Custombuttons = () => {
       </Typography>
       
       <Typography style={{ marginTop: 30, fontWeight: 600, fontSize : 20  }}> More</Typography>
-      
+      <Link to ="cartmain" style={{color:"#FFFFFF", paddingTop:30,textDecoration: "none"  }}>
       <Container  >
         <ShoppingCartIcon />
-        
+              
         <Typography style={{ fontWeight: 600, fontSize : 20, }}>Cart</Typography>
       </Container>
+      </Link>
      
     </Wrapper>
   );

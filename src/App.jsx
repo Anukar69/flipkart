@@ -9,8 +9,9 @@ import Data from "./Components/deatail/Data"
 import Login from "./Components/login/Login";
 import Singnup from "./Components/login/Singnup"
 import Productindividual from "./Components/productdetail/Productrindividual";
-
-
+import Cartmain from "./Components/cart/Cartmain";
+import Adress from "./Components/checkout/Adress";
+import Payment from "./Components/checkout/Payment"
 
 function App() {
   return (
@@ -24,7 +25,11 @@ function App() {
           <Route path="/login" element={<Login/> } />
           <Route path="/productdetail" element={<Productmenu/>} />
           <Route path="singnup" element={<Singnup/>}/>
-          <Route path="/productdetail/Productindividual" element={<Productindividual/>}/>
+          <Route path="/productdetail/productdetail/Productindividual" element={<Productindividual/>}/>
+          <Route path="/cartmain" element={<Cartmain/>}/>
+          <Route path="/payment" element={<Payment/>}/>
+          <Route path="/adress" element={<Adress/>}/>
+
         </Routes>
       </BrowserRouter>
     </div>

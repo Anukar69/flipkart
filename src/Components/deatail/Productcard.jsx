@@ -32,16 +32,12 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function RecipeReviewCard(props) {
+export default function RecipeReviewCar(props) {
  
-
-
-  
-
   return (
     <>
       
-      <Link to="productdetail/Productindividual">
+      <Link to="/productdetail/productdetail/Productindividual">
           <Card sx={{ maxWidth: 345 }}>
             <CardActions disableSpacing>
             
@@ -67,7 +63,7 @@ export default function RecipeReviewCard(props) {
               }
               //title={title}
             />
-            {/* <Typography>{price}</Typography> */}
+            <Typography>{props.price}</Typography> 
 
             <Typography>Bank Offer</Typography>
             

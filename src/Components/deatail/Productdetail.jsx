@@ -251,8 +251,6 @@ function Productdetail(props) {
       .catch((error) => setIsError(error.message));
   }, []);
 
-  console.log(myData, "check my data");
-
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -312,7 +310,7 @@ function Productdetail(props) {
           }}
         >
           <Toolbar />
-       
+
           <Box sx={{ flexGrow: 1 }}>
             <Grid container item spacing={3}>
               {myData?.products?.map((post) => {
@@ -330,10 +328,8 @@ function Productdetail(props) {
                   <React.Fragment key={id}>
                     {" "}
                     <Grid item xs={4}>
-                    <Item>
-                        <Productcard thumbnail={thumbnail} />
-                      
-                 
+                      <Item>
+                        <Productcard thumbnail={thumbnail} price={price} />
                       </Item>
                     </Grid>
                   </React.Fragment>
@@ -341,7 +337,6 @@ function Productdetail(props) {
               })}
             </Grid>
           </Box>
-         
         </Box>
       </Box>
     </>

@@ -2,7 +2,7 @@ import Box from "@mui/material/Box";
 import { Fragment } from "react";
 import { styled } from "@mui/material/styles";
 import { products } from "../../sitedata/data";
-
+ 
 //component
 import Navbar from "./Navbar";
 import Banner from "./Banner";

@@ -5,6 +5,13 @@ import { styled } from "@mui/material/styles";
 import "react-multi-carousel/lib/styles.css";
 import { Button, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
+
+const Item = styled(Paper)(({ theme }) => ({
+  padding: theme.spacing(1),
+
+}));
 
 const responsive = {
   desktop: {
@@ -31,9 +38,9 @@ const Image = styled("img")(({ theme }) => ({
 const Carouselstyle = styled(Box)`
   
 `;
-const Coro =styled(Carousel)`
-    padding-top: 100;
-`
+const Coro = styled(Carousel)`
+  padding-top: 100;
+`;
 
 const Offerbanner = styled(Box)`
   height: 150;
@@ -53,54 +60,82 @@ const Text = styled(Typography)`
 `;
 
 const Detail = styled("Box")`
-    padding-top: 100;
-
+  padding-top: 100;
 `;
 
-
 const Banner = () => {
-  return (
-    <Carouselstyle>
+  return (<>
+
+
+    <Grid container spacing={2}>
+  <Grid item xs={3}>
+    <Item>
     <Detail>
-          <Typography style={{ paddingTop:100 , paddingLeft:100, paddingRight: 100, fontSize: 38, width: 230}} >Top Offers</Typography>
-          <Box style={{  paddingLeft:100, paddingRight: 130, fontSize: 38, width: 230}}>
-          
-          <Button variant="contained" >VIEW ALL</Button>
-          
-          </Box>
-          <img src="https://i.ibb.co/LJ02KkT/Screenshot-from-2022-10-12-10-59-56.png" alt="design" style={{width: 400, height: 180}} ></img>
-        </Detail>
-       
-      <Coro
+        <Typography
+          style={{
+            paddingTop: 100,
+            paddingLeft: 100,
+            paddingRight: 100,
+            fontSize: 38,
+            width: 230,
+          }}
+        >
+          Top Offers
+        </Typography>
+        <Box
+          style={{
+            paddingLeft: 100,
+            paddingRight: 130,
+            fontSize: 38,
+            width: 230,
+          }}
+        >
+          <Button variant="contained">VIEW ALL</Button>
+        </Box>
+        <img
+          src="https://i.ibb.co/LJ02KkT/Screenshot-from-2022-10-12-10-59-56.png"
+          alt="design"
+          style={{ width: 400, height: 180 }}
+        />
+      </Detail>
+    </Item>
+  </Grid>
+  <Grid item xs={9}>
+    <Item style={{paddingTop: 100}}>
+    <Coro
         responsive={responsive}
         swipeable={false}
         draggable={false}
         dotListClass="custom-dot-list-style"
         transitionDuration={4000}
         containerClass="carousel-container"
-       
-      >
-        
 
+      >
         {productData.map((data) => (
-          <Link to = "/productdetail">
+          <Link to="/productdetail">
             <Box>
-          <Image src={data.url} alt="banner" id={data.id}/>
-          <Box>
-          
-          <Text>{data.text}</Text>
-          <Text>{data.text2}</Text>
-          <Text>{data.text3}</Text>
-          </Box>
-          </Box>
+              <Image src={data.url} alt="banner" id={data.id} />
+              <Box>
+                <Text>{data.text}</Text>
+                <Text>{data.text2}</Text>
+                <Text>{data.text3}</Text>
+              </Box>
+            </Box>
           </Link>
         ))}
-        
+
         <Typography>Top Offers</Typography>
       </Coro>
-      
-      
+    </Item>
+  </Grid>
+</Grid>
+
+    <Carouselstyle>
+     
+     
     </Carouselstyle>
+
+    </>
   );
 };
 export default Banner;

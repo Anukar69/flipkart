@@ -5,10 +5,32 @@ import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 
-export default function AddressForm() {
+import { styled } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import Paper from "@mui/material/Paper";
+import Button from "@mui/material/Button";
+import { fontSize } from "@mui/system";
+import { Link } from "react-router-dom";
+
+const Item = styled(Paper)(({ theme }) => ({
+  padding: theme.spacing(1),
+}));
+
+const Pincode = styled(Box)`
+  display: flex;
+`;
+
+const Placeorder = styled(Box)`
+ 
+`;
+
+const AddressForm = () => {
   return (
-    <React.Fragment>
-      <Typography variant="h6" gutterBottom>
+    <Grid container spacing={2}>
+      <Grid item xs={8}>
+        <Item style={{ paddingLeft: 200 }}>
+          
+        <Typography variant="h6" gutterBottom>
         Shipping address
       </Typography>
       <Grid container spacing={3}>
@@ -104,6 +126,75 @@ export default function AddressForm() {
           />
         </Grid>
       </Grid>
-    </React.Fragment>
+          <Link to="payment">
+          <Placeorder style={{ paddingTop: 40, float: "right"}}>
+          <Button style={{height:60, width:250,backgroundColor: "#fb641b", fontSize:18, fontWeight:700}} variant="contained">DELIVER HERE</Button>
+          </Placeorder>
+          </Link>
+        </Item>
+      </Grid>
+      <Grid item xs={4}>
+        <Item style={{ paddingRight: 200 }}>
+          <h3>PRICE DETAIL</h3>
+          <Grid container spacing={2}>
+            <Grid item xs={6}>
+              <Item style={{ textAlign: "left", fontSize: 20, paddingTop: 30 }}>
+                Price (2 items)
+              </Item>
+            </Grid>
+            <Grid item xs={6}>
+              <Item
+                style={{ textAlign: "right", fontSize: 20, paddingTop: 30 }}
+              >
+                ₹2,629
+              </Item>
+            </Grid>
+            <Grid item xs={6}>
+              <Item style={{ textAlign: "left", fontSize: 20, paddingTop: 30 }}>
+                Discount
+              </Item>
+            </Grid>
+            <Grid item xs={6}>
+              <Item
+                style={{ textAlign: "right", fontSize: 20, paddingTop: 30,color: "#388e3c" }}
+              >
+                − ₹1,531
+              </Item>
+            </Grid>
+            <Grid item xs={6}>
+              <Item style={{ textAlign: "left", fontSize: 20, paddingTop: 30 }}>
+                Delivery Charges
+              </Item>
+            </Grid>
+            <Grid item xs={6}>
+              <Item
+                style={{ textAlign: "right", fontSize: 20, paddingTop: 30, color: "#388e3c" }}
+              >
+                Free
+              </Item>
+            </Grid>
+            <Grid item xs={6}>
+              <Item style={{ textAlign: "left", fontSize: 30, paddingTop: 30 }}>
+                Total Amount
+              </Item>
+            </Grid>
+            <Grid item xs={6}>
+              <Item
+                style={{ textAlign: "right", fontSize: 30, paddingTop: 30 }}
+              >
+                ₹1,098
+              </Item>
+            </Grid>
+          </Grid>
+          <Typography style={{fontSize:20 , color: "#388e3c",paddingTop:30,fontWeight:800}}>You will save ₹1,531 on this order</Typography>
+          <Typography style={{fontSize:18 ,paddingTop:30}}>
+            Save extra ₹25 using 25 SuperCoins on the next step
+            Available Balance: 102
+          </Typography>
+        </Item>
+      </Grid>
+    </Grid>
   );
-}
+};
+
+export default AddressForm;
