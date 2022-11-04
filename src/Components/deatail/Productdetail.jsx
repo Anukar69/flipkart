@@ -29,7 +29,11 @@ import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Link } from "@mui/material";
+import { useDispatch } from "react-redux";
+
+import ReactPaginate from "react-paginate";
 
 const drawerWidth = 240;
 
@@ -38,6 +42,7 @@ const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
 function Productdetail(props) {
   const { window } = props;
+
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [myData, setMyData] = useState([]);
   const handleDrawerToggle = () => {
@@ -48,14 +53,6 @@ function Productdetail(props) {
   const RecipeReviewCard = () => {
     const [myData, setMyData] = useState([]);
     const [isError, setIsError] = useState("");
-
-    useEffect(() => {
-      axios
-        .get("https://dummyjson.com/products")
-        .then((response) => setMyData(response.data))
-        .catch((error) => setIsError(error.message));
-    }, []);
-
     console.log(myData, "check my data");
   };
 
@@ -256,6 +253,7 @@ function Productdetail(props) {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+
   return (
     <>
       <Box sx={{ display: "flex" }}>
@@ -329,7 +327,12 @@ function Productdetail(props) {
                     {" "}
                     <Grid item xs={4}>
                       <Item>
-                        <Productcard thumbnail={thumbnail} price={price} />
+                        <Productcard
+                          thumbnail={thumbnail}
+                          price={price}
+                          id={id}
+                          description={description}
+                        />
                       </Item>
                     </Grid>
                   </React.Fragment>

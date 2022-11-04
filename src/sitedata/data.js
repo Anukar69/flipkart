@@ -75,8 +75,8 @@ export const productData = [
   },
   {
     id: 2,
-    url: "https://rukminim1.flixcart.com/image/416/416/kapoo7k0/electric-kettle/p/6/s/pigeon-favourite-original-imafs7xhj5uwgrh4.jpeg?q=70",
-    text: "Grocery",
+    url: "https://dummyjson.com/image/i/products/1/4.jpg",
+    text: "Mobile",
     text2: "From 500",
     text3: "Grocery",
   },
@@ -96,8 +96,8 @@ export const productData = [
   },
   {
     id: 4,
-    url: "https://rukminim1.flixcart.com/image/416/416/kapoo7k0/electric-kettle/p/6/s/pigeon-favourite-original-imafs7xhj5uwgrh4.jpeg?q=70",
-    text: "Grocery",
+    url: "https://dummyjson.com/image/i/products/10/2.jpg",
+    text: "Laptop",
     text2: "From 500",
     text3: "Grocery",
   },

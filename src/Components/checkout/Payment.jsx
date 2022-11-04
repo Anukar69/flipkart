@@ -24,6 +24,7 @@ const Placeorder = styled(Box)``;
 
 const PaymentForm = () => {
   return (
+    
     <Grid container spacing={2}>
       <Grid item xs={8}>
         <Item style={{ paddingLeft: 200 }}>
@@ -83,13 +84,9 @@ const PaymentForm = () => {
             <FormGroup>
               <FormControlLabel
                 control={<Checkbox defaultChecked />}
-                
                 label="UPI"
               />
-              <FormControlLabel
-                control={<Checkbox />}
-                label="Wallet"
-              />
+              <FormControlLabel control={<Checkbox />} label="Wallet" />
             </FormGroup>
           </Grid>
           <Link to="payment">

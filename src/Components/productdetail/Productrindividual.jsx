@@ -5,7 +5,7 @@ import Box from "@mui/material/Box";
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
-import { Link, useLocation, useNavigate,useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
@@ -22,6 +22,7 @@ import { width } from "@mui/system";
 import { Typography } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import Left from "./Left";
+import { Description } from "@material-ui/icons";
 
 const Rating = styled(Box)`
   display: flex;
@@ -35,7 +36,6 @@ const Offer = styled("img")({
 
 const Item = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(1),
-
   height: 100,
 }));
 
@@ -44,36 +44,54 @@ const Propductindi = (props) => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [myData, setMyData] = useState([]);
   const { category, productID } = useParams();
+  const location = useLocation();
+
+  const productId = location.pathname.split(":")[1];
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+
   const [isError, setIsError] = useState("");
 
   const RecipeReviewCard = () => {
-    
     const [isError, setIsError] = useState("");
-   
     const [product, setProduct] = useState({});
     const [images, setImages] = useState([""]);
-    const [loading, setLoading] = useState<Boolean>(false);
-    
+    const [loading, setLoading] = useState < Boolean > false;
+
     console.log(category, "check my data");
   };
 
   const container =
     window !== undefined ? () => window().document.body : undefined;
   useEffect(() => {
-    axios
-      .get("https://dummyjson.com/products")
-      .then((response) => setMyData(response.data))
-      .catch((error) => setIsError(error.message));
-  }, []);
+    if (productId) {
+      axios
+        .get("https://dummyjson.com/products")
+        .then((response) => {
+          const neededProduct = response.data.products?.filter((product) => {
+            if (product.id == productId) {
+              return true;
+            }
+          });
+          setMyData(neededProduct[0]);
+        })
+        .catch((error) => setIsError(error.message));
+    }
+  }, [productId]);
 
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+
+  const [counter, setCounter] = useState(1);
+  const incrementCounter = () => setCounter(counter + 1);
+  let decrementCounter = () => setCounter(counter - 1);
+  if (counter <= 0) {
+    decrementCounter = () => setCounter(1);
+  }
   return (
     <>
       <Pronav />
@@ -82,7 +100,7 @@ const Propductindi = (props) => {
         <Grid container spacing={2}>
           <Grid item xs={5}>
             <Item style={{ paddingLeft: 100 }}>
-            {myData?.products?.map((post) => {
+              {/* {myData.map((post) => {
                 const {
                   id,
                   description,
@@ -93,24 +111,24 @@ const Propductindi = (props) => {
                   thumbnail,
                   images,
                 } = post;
-                return (
-                  <React.Fragment key={id}>
-                    {" "}
-                    
-                        <Left thumbnail={thumbnail} price={price} />
-                    
-                  </React.Fragment>
-                );
-              })}
-              <Left />
+                debugger;
+                return ( */}
+              <React.Fragment>
+                <Left
+                  thumbnail={myData.thumbnail}
+                  price={myData.price}
+                  id={myData.id}
+                />
+              </React.Fragment>
+              {/* );
+              })} */}
             </Item>
           </Grid>
 
           <Grid item xs={7}>
             <Item style={{ paddingRight: 100 }}>
               <Typography style={{ fontSize: 30 }}>
-                Oliveware Infinite Lunch Box | 3 Stainless Steel Containers |
-                Microwave Safe | Leak Proof 3 Containers Lunch Box (1340 ml)
+                {myData.description}
               </Typography>
               <Rating>
                 <Typography
@@ -132,8 +150,8 @@ const Propductindi = (props) => {
               </Typography>
 
               <Typography style={{ fontSize: 20 }}>
-                <span style={{ fontSize: 42 }}>₹399</span>
-                <s> ₹1,130 </s> &nbsp; 64% off
+                <span style={{ fontSize: 42 }}>{myData.price}</span>
+                <s> ₹3,130 </s> &nbsp; 64% off
               </Typography>
               <Typography
                 style={{ fontSize: 23, fontWeight: 500, paddingBottom: 10 }}
@@ -204,6 +222,5 @@ const Propductindi = (props) => {
     </>
   );
 };
-
 
 export default Propductindi;

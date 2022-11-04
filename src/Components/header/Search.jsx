@@ -10,9 +10,7 @@ const Seachbar = styled(Box)`
   border-radius: 2px;
   height: 45px;
   display: flex;
-  align :center;
-
- 
+  align: center;
 `;
 
 const Inputsearchbar = styled(InputBase)`

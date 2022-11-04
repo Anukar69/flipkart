@@ -19,7 +19,7 @@ import { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import { Link } from "react-router-dom";
 import Productindividual from "../productdetail/Productrindividual";
-
+import { useNavigate } from "react-router-dom";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -33,46 +33,40 @@ const ExpandMore = styled((props) => {
 }));
 
 export default function RecipeReviewCar(props) {
- 
+  const indi = useNavigate();
   return (
     <>
-      
-      <Link to="/productdetail/productdetail/Productindividual">
-          <Card sx={{ maxWidth: 345 }}>
-            <CardActions disableSpacing>
-            
-              <IconButton aria-label="add to favorites">
-                <FavoriteIcon />
-              </IconButton>
-            
-            </CardActions>
-          
-            <CardMedia
-              style={{ width: 280, height: 280 }}
-              component="img"
-              height="194"
-              image={props.thumbnail}
-              alt="Paella dish"
-            />
-           
-            <CardHeader
-              action={
-                <IconButton aria-label="settings">
-                  <MoreVertIcon />
-                </IconButton>
-              }
-              //title={title}
-            />
-            <Typography>{props.price}</Typography> 
+      <Card sx={{ maxWidth: 345 }}>
+        <CardActions disableSpacing>
+          <IconButton aria-label="add to favorites">
+            <FavoriteIcon />
+          </IconButton>
+        </CardActions>
 
-            <Typography>Bank Offer</Typography>
-            
-            <Typography>Free Delivery</Typography>
-             
-          </Card>
-           
-          </Link>
-    
+        <CardMedia
+          style={{ width: 280, height: 280 }}
+          component="img"
+          height="194"
+          image={props.thumbnail}
+          alt="Paella dish"
+          onClick={() => indi(`/Productindividual:${props.id}`)}
+        />
+
+        <CardHeader
+          action={
+            <IconButton aria-label="settings">
+              <MoreVertIcon />
+            </IconButton>
+          }
+          //title={title}
+        />
+
+        <Typography>{props.price}</Typography>
+
+        <Typography>Bank Offer</Typography>
+
+        <Typography>Free Delivery</Typography>
+      </Card>
     </>
   );
 }

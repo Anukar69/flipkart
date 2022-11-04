@@ -42,7 +42,7 @@ const Loginbuttom = styled(Button)`
 const Custombuttons = () => {
   return (
     <Wrapper>
-    <Link to ="login">
+    <Link to ="/login">
       <Loginbuttom variant="contained">Login</Loginbuttom>
       </Link>
      

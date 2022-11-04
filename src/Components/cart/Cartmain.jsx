@@ -7,7 +7,15 @@ import { Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 import Cartcard from "./Cartcard";
 import { fontSize } from "@mui/system";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation} from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import Pricedetail from "./Pricedetail";
+import LoadingScreen from "../../common /LoadingScreen";
+
+
+
 
 const Item = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(1),
@@ -21,12 +29,69 @@ const Placeorder = styled(Box)`
  
 `;
 
-const Cartmain = () => {
+const Cartmain = (props) => {
+
+  const { window } = props;
+
+  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [myData, setMyData] = useState([]);
+
+  const { category, productID } = useParams();
+  const location = useLocation();
+  const [loading, setLoading] = useState(true)
+  const productId = location.pathname.split(":")[1];
+
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
+  const [isError, setIsError] = useState("");
+
+  const RecipeReviewCard = () => {
+    const [myData, setMyData] = useState([]);
+    const [isError, setIsError] = useState("");
+    console.log(myData, "check my data");
+  };
+
+  const container =
+  window !== undefined ? () => window().document.body : undefined;
+useEffect(() => {
+  axios
+    .get("https://dummyjson.com/products")
+    .then((response) => {
+      const neededProduct = response.data.products?.filter((product) => {
+        if (product.id == productId) {
+          return true;
+        }
+      });
+      debugger;
+      setMyData(neededProduct[0]);
+    })
+    .catch((error) => setIsError(error.message));
+}, [productId]);
+
+useEffect(() => {
+  setTimeout(() => setLoading(false), 3000)
+}, [])
+
+
+const [expanded, setExpanded] = React.useState(false);
+
+const handleExpandClick = () => {
+  setExpanded(!expanded);
+};
+
+
+ 
+
     const chalja = useNavigate()
+   
+
   return (
+    <>
+    {loading === false ? (
     <Grid container spacing={2}>
-      <Grid item xs={8}>
-        <Item style={{ paddingLeft: 200 }}>
+      <Grid item xs={8}> 
+              <Item style={{ paddingLeft: 200 }}>
           <h2 style={{ textAlign: "center" }}>Flipkart</h2>
           <Pincode
             style={{ paddingTop: 20, paddingBottom: 15, borderStyle: "ridge" }}
@@ -51,81 +116,31 @@ const Cartmain = () => {
             </Typography>
             <Button style={{ fontWeight: "900" }} variant="outlined">
               Enter Delivery Pincode{" "}
+              
             </Button>
           </Pincode>
-          <Cartcard />
-          <Cartcard />
-          <Link>
+          <Cartcard thumbnail={myData.thumbnail} price={myData.price} id= {myData.id} description={myData.description}/>
+          
+          <Link to="adress">
           <Placeorder style={{ paddingTop: 40, float: "right"}}>
           <Button
-           onClick={()=> chalja("/adress")}
+           onClick={()=> chalja("cartmain:id/adress")}
            style={{height:60, width:250,backgroundColor: "#fb641b", fontSize:18, fontWeight:700}} variant="contained">PLACE ORDER</Button>
           </Placeorder>
           </Link>
         </Item>
       </Grid>
       <Grid item xs={4}>
-        <Item style={{ paddingRight: 200 }}>
-          <h3>PRICE DETAIL</h3>
-          <Grid container spacing={2}>
-            <Grid item xs={6}>
-              <Item style={{ textAlign: "left", fontSize: 20, paddingTop: 30 }}>
-                Price (2 items)
-              </Item>
-            </Grid>
-            <Grid item xs={6}>
-              <Item
-                style={{ textAlign: "right", fontSize: 20, paddingTop: 30 }}
-              >
-                ₹2,629
-              </Item>
-            </Grid>
-            <Grid item xs={6}>
-              <Item style={{ textAlign: "left", fontSize: 20, paddingTop: 30 }}>
-                Discount
-              </Item>
-            </Grid>
-            <Grid item xs={6}>
-              <Item
-                style={{ textAlign: "right", fontSize: 20, paddingTop: 30,color: "#388e3c" }}
-              >
-                − ₹1,531
-              </Item>
-            </Grid>
-            <Grid item xs={6}>
-              <Item style={{ textAlign: "left", fontSize: 20, paddingTop: 30 }}>
-                Delivery Charges
-              </Item>
-            </Grid>
-            <Grid item xs={6}>
-              <Item
-                style={{ textAlign: "right", fontSize: 20, paddingTop: 30, color: "#388e3c" }}
-              >
-                Free
-              </Item>
-            </Grid>
-            <Grid item xs={6}>
-              <Item style={{ textAlign: "left", fontSize: 30, paddingTop: 30 }}>
-                Total Amount
-              </Item>
-            </Grid>
-            <Grid item xs={6}>
-              <Item
-                style={{ textAlign: "right", fontSize: 30, paddingTop: 30 }}
-              >
-                ₹1,098
-              </Item>
-            </Grid>
-          </Grid>
-          <Typography style={{fontSize:20 , color: "#388e3c",paddingTop:30,fontWeight:800}}>You will save ₹1,531 on this order</Typography>
-          <Typography style={{fontSize:18 ,paddingTop:30}}>
-            Save extra ₹25 using 25 SuperCoins on the next step
-            Available Balance: 102
-          </Typography>
-        </Item>
+        <Pricedetail price={myData.price} />
       </Grid>
     </Grid>
+    ) : (
+      <LoadingScreen />
+    )}
+    </>
   );
-};
+
+}
+
 
 export default Cartmain;

@@ -13,6 +13,7 @@ import Cartmain from "./Components/cart/Cartmain";
 import Adress from "./Components/checkout/Adress";
 import Payment from "./Components/checkout/Payment"
 
+
 function App() {
   return (
     <div>
@@ -25,10 +26,11 @@ function App() {
           <Route path="/login" element={<Login/> } />
           <Route path="/productdetail" element={<Productmenu/>} />
           <Route path="singnup" element={<Singnup/>}/>
-          <Route path="/productdetail/productdetail/Productindividual" element={<Productindividual/>}/>
-          <Route path="/cartmain" element={<Cartmain/>}/>
+          <Route path="/Productindividual:id" element={<Productindividual/>}/>
+          <Route path="/cartmain:id" element={<Cartmain/>}/>
+          
+          <Route path="/cartmain:id/adress" element={<Adress/>}/>
           <Route path="/payment" element={<Payment/>}/>
-          <Route path="/adress" element={<Adress/>}/>
 
         </Routes>
       </BrowserRouter>

@@ -2,6 +2,7 @@ import Box from "@mui/material/Box";
 import { Fragment } from "react";
 import { styled } from "@mui/material/styles";
 import { products } from "../../sitedata/data";
+import Footer from "../footer/Footer";
  
 //component
 import Navbar from "./Navbar";
@@ -30,6 +31,7 @@ const Home = () => {
         <Product/>
         <Product/>
       </Component>
+      <Footer/>
     </Fragment>
   );
 };
