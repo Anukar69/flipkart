@@ -51,7 +51,7 @@ const Custombuttons = () => {
       </Typography>
       
       <Typography style={{ marginTop: 30, fontWeight: 600, fontSize : 20  }}> More</Typography>
-      <Link to ="cartmain" style={{color:"#FFFFFF", paddingTop:30,textDecoration: "none"  }}>
+      <Link to ="cartmain:id" style={{color:"#FFFFFF", paddingTop:30,textDecoration: "none"  }}>
       <Container  >
         <ShoppingCartIcon />
               

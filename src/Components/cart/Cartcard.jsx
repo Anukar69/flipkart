@@ -12,16 +12,27 @@ import SkipNextIcon from "@mui/icons-material/SkipNext";
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
+import { useNavigate, useParams } from "react-router-dom";
 import { RecipeReviewCard } from "../productdetail/Productrindividual";
+import Button from "@mui/material/Button";
+
+import { Counter } from "./Counter";
+import { amountParse, amountPrice } from "../../common/function";
 
 const Item = styled(Paper)(({ theme }) => ({
-  padding: theme.spacing(1),
+   padding: theme.spacing(1),
 }));
+const Placeorder = styled(Box)`
+ 
+`;
 
 export default function MediaControlCard(props) {
   const theme = useTheme();
+  const data = amountParse(amountPrice(props.price));
 
+  const adressurl = useNavigate()
   return (
+    
     <Card sx={{ display: "flex" }}>
       <CardContent>
         <CardMedia
@@ -48,10 +59,7 @@ export default function MediaControlCard(props) {
                   style={{ fontSize: 30 }}
                 >
                   <s style={{ fontSize: 25 }}>{props.price} </s>&nbsp;
-                  {(
-                          props.price -
-                          (props.price * 55) / 100
-                        )}{" "}
+                  {data}{" "}
                   <span
                     style={{ color: "#388e3c", fontSize: 20, fontWeight: 800 }}
                   >
@@ -66,12 +74,22 @@ export default function MediaControlCard(props) {
           </Grid>
         </CardContent>
         <Box sx={{ display: "flex", alignItems: "center", pl: 1, pb: 1 }}>
+        <Counter/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <Typography style={{ fontSize: 25 }}>
             Save for later &nbsp;&nbsp;&nbsp;
           </Typography>
+          
+         
+
           <Typography style={{ fontSize: 25 }}>Remove</Typography>
         </Box>
+
       </Box>
+      <Placeorder style={{ paddingTop: 40, float: "right"}}>
+          <Button
+           onClick={()=> adressurl(`/adress:${props.id}`)}
+           style={{height:60, width:250,backgroundColor: "#fb641b", fontSize:18, fontWeight:700}} variant="contained">PLACE ORDER</Button>
+          </Placeorder>
     </Card>
   );
 }

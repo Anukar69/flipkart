@@ -23,13 +23,12 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home/>} />
-          <Route path="/login" element={<Login/> } />
+          <Route path="/login" element={<Adress/> } />
           <Route path="/productdetail" element={<Productmenu/>} />
           <Route path="singnup" element={<Singnup/>}/>
           <Route path="/Productindividual:id" element={<Productindividual/>}/>
           <Route path="/cartmain:id" element={<Cartmain/>}/>
-          
-          <Route path="/cartmain:id/adress" element={<Adress/>}/>
+          <Route path="/adress:id" element={<Adress/>}/>
           <Route path="/payment" element={<Payment/>}/>
 
         </Routes>

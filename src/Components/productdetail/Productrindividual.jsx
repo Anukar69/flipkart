@@ -222,5 +222,4 @@ const Propductindi = (props) => {
     </>
   );
 };
-
 export default Propductindi;

@@ -1,0 +1,40 @@
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .row > button {
+    margin-left: 4px;
+    margin-right: 8px;
+  }
+  .row:not(:last-child) {
+    margin-bottom: 16px;
+  }
+  
+  .value {
+    font-size: 25px;
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-top: 2px;
+    font-family: 'Courier New', Courier, monospace;
+  }
+  
+  .button {
+    appearance: none;
+    background: none;
+    font-size: 25px;
+    padding-left: 12px;
+    padding-right: 12px;
+    outline: none;
+    border: 3px solid transparent;
+ 
+    padding-bottom: 4px;
+    cursor: pointer;
+    background-color: rgba(112, 76, 182, 0.1);
+    border-radius: 25px;
+    transition: all 0.15s;
+  }
+  
+ 
+

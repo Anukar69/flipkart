@@ -4,13 +4,16 @@ import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 
 import Checkbox from "@mui/material/Checkbox";
-
+import { Link, useLocation} from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import { fontSize } from "@mui/system";
-import { Link, useNavigate } from "react-router-dom";
+
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import { FormControlLabel } from '@mui/material';
 import Pricedetail from "../cart/Pricedetail";
@@ -24,9 +27,57 @@ const Pincode = styled(Box)`
 `;
 
 const Placeorder = styled(Box)``;
+const AddressForm = (props) => {
+  const { window } = props;
 
-const AddressForm = () => {
+  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [myData, setMyData] = useState([]);
+
+  const { category, productID } = useParams();
+  const location = useLocation();
+  const [loading, setLoading] = useState(true)
+  const productId = location.pathname.split(":")[1];
+
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
+  const [isError, setIsError] = useState("");
+
+  const RecipeReviewCard = () => {
+    const [myData, setMyData] = useState([]);
+    const [isError, setIsError] = useState("");
+    console.log(myData, "check my data");
+  };
+
+  const container =
+  window !== undefined ? () => window().document.body : undefined;
+useEffect(() => {
+  axios
+    .get("https://dummyjson.com/products")
+    .then((response) => {
+      const neededProduct = response.data.products?.filter((product) => {
+        if (product.id == productId) {
+          return true;
+        }
+      });
     
+      setMyData(neededProduct[0]);
+    })
+    .catch((error) => setIsError(error.message));
+}, [productId]);
+
+useEffect(() => {
+  setTimeout(() => setLoading(false), 3000)
+}, [])
+
+
+const [expanded, setExpanded] = React.useState(false);
+
+const handleExpandClick = () => {
+  setExpanded(!expanded);
+};
+
+  
 
 
   const chalja = useNavigate();
@@ -153,7 +204,7 @@ const AddressForm = () => {
         </Item>
       </Grid>
       <Grid item xs={4}>
-       <Pricedetail/>
+       <Pricedetail price={myData.price} />
       </Grid>
     </Grid>
   );
