@@ -12,6 +12,7 @@ import Productindividual from "./Components/productdetail/Productrindividual";
 import Cartmain from "./Components/cart/Cartmain";
 import Adress from "./Components/checkout/Adress";
 import Payment from "./Components/checkout/Payment"
+import Cartwithoutp from "./Components/cart/Cartwithoutp"
 
 
 function App() {
@@ -23,10 +24,11 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home/>} />
-          <Route path="/login" element={<Adress/> } />
+          <Route path="/login" element={<Login/> } />
           <Route path="/productdetail" element={<Productmenu/>} />
           <Route path="singnup" element={<Singnup/>}/>
           <Route path="/Productindividual:id" element={<Productindividual/>}/>
+          <Route path="/withoutproduct" element={<Cartwithoutp/>}/>
           <Route path="/cartmain:id" element={<Cartmain/>}/>
           <Route path="/adress:id" element={<Adress/>}/>
           <Route path="/payment" element={<Payment/>}/>

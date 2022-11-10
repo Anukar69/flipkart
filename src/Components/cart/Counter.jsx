@@ -8,16 +8,13 @@ export function Counter() {
   const dispatch = useDispatch();
 
   const incrementdecrement = ({ action }) => {
-
-    if(action == "increment" ){
-        dispatch(increment())
+    if (action == "increment") {
+      dispatch(increment());
     }
-    if(action == "decrement" && count >=2){
-
-        dispatch(decrement())
+    if (action == "decrement" && count >= 2) {
+      dispatch(decrement());
     }
-  
-};
+  };
 
   return (
     <div>

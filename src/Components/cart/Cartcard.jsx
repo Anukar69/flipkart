@@ -15,24 +15,23 @@ import Grid from "@mui/material/Grid";
 import { useNavigate, useParams } from "react-router-dom";
 import { RecipeReviewCard } from "../productdetail/Productrindividual";
 import Button from "@mui/material/Button";
+import { Link } from "react-router-dom";
 
 import { Counter } from "./Counter";
 import { amountParse, amountPrice } from "../../common/function";
 
 const Item = styled(Paper)(({ theme }) => ({
-   padding: theme.spacing(1),
+  padding: theme.spacing(1),
 }));
-const Placeorder = styled(Box)`
- 
-`;
+const Placeorder = styled(Box)``;
 
 export default function MediaControlCard(props) {
   const theme = useTheme();
   const data = amountParse(amountPrice(props.price));
 
-  const adressurl = useNavigate()
+  const adressurl = useNavigate();
   return (
-    
+    <>
     <Card sx={{ display: "flex" }}>
       <CardContent>
         <CardMedia
@@ -74,22 +73,40 @@ export default function MediaControlCard(props) {
           </Grid>
         </CardContent>
         <Box sx={{ display: "flex", alignItems: "center", pl: 1, pb: 1 }}>
-        <Counter/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <Typography style={{ fontSize: 25 }}>
+          <Counter />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          
+          <Link to = "/withoutproduct">
+          <Button style={{color: "#000000"}}>
+          <Typography style={{ fontSize: 25 , textTransform: "capitalize" }}>
             Save for later &nbsp;&nbsp;&nbsp;
           </Typography>
-          
-         
-
-          <Typography style={{ fontSize: 25 }}>Remove</Typography>
+          </Button>
+          </Link>
+          <Link to = "/withoutproduct">
+          <Button style={{color: "#000000"}}>
+          <Typography style={{ fontSize: 25, textTransform: "capitalize" }}>Remove</Typography>
+          </Button>
+          </Link>
         </Box>
-
       </Box>
-      <Placeorder style={{ paddingTop: 40, float: "right"}}>
-          <Button
-           onClick={()=> adressurl(`/adress:${props.id}`)}
-           style={{height:60, width:250,backgroundColor: "#fb641b", fontSize:18, fontWeight:700}} variant="contained">PLACE ORDER</Button>
-          </Placeorder>
+     
     </Card>
+    <Placeorder style={{ paddingTop: 40, float: "right" }}>
+        <Button
+          onClick={() => adressurl(`/adress:${props.id}`)}
+          style={{
+            height: 60,
+            width: 250,
+            backgroundColor: "#fb641b",
+            fontSize: 18,
+            fontWeight: 700,
+          }}
+          variant="contained"
+        >
+          PLACE ORDER
+        </Button>
+      </Placeorder>
+      </>
   );
 }
