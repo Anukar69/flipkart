@@ -30,7 +30,7 @@ const Pricedetail = (props) => {
       <Grid container spacing={2}>
         <Grid item xs={6}>
           <Item style={{ textAlign: "left", fontSize: 20, paddingTop: 30 }}>
-            Price (1 items)
+            Price ({count} items)
           </Item>
         </Grid>
         <Grid item xs={6}>

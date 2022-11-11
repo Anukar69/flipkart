@@ -22,6 +22,7 @@ const Pincode = styled(Box)`
   display: flex;
 `;
 
+
 const Placeorder = styled(Box)``;
 
 const Cartmain = (props) => {

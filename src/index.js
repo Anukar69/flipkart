@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { store } from './common/store';
+import { store } from './store';
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import Header from "./Components/header/Header";
@@ -12,6 +12,7 @@ import Home from "./Components/home/Home";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
+  
    <Provider store={store}>
       <App />
     </Provider>

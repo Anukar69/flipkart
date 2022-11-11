@@ -11,20 +11,27 @@ import Button from "@mui/material/Button";
 import { fontSize } from "@mui/system";
 import { Link } from "react-router-dom";
 import FormGroup from "@mui/material/FormGroup";
+import { useGetProductDataQuery } from "../services/Api";
 
 const Item = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(1),
 }));
-
 const Pincode = styled(Box)`
   display: flex;
 `;
-
 const Placeorder = styled(Box)``;
-
 const PaymentForm = () => {
+  const { data, error, isLoading } = useGetProductDataQuery("");
+  console.log({ data });
+  // if (isLoading) {
+  //   return <div>Loading...</div>;
+  // }
+  // if (error) {
+  //   console.log(error);
+  //   return <div>Oops, an error occured</div>;
+  // }
+  // console.log(data);
   return (
-    
     <Grid container spacing={2}>
       <Grid item xs={8}>
         <Item style={{ paddingLeft: 200 }}>
@@ -120,7 +127,8 @@ const PaymentForm = () => {
               <Item
                 style={{ textAlign: "right", fontSize: 20, paddingTop: 30 }}
               >
-                ₹2,629
+                
+
               </Item>
             </Grid>
             <Grid item xs={6}>
