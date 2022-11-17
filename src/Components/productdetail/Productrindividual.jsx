@@ -57,7 +57,7 @@ const Propductindi = (props) => {
     const [isError, setIsError] = useState("");
     const [product, setProduct] = useState({});
     const [images, setImages] = useState([""]);
-    const [loading, setLoading] = useState < Boolean > false;
+    const [loading, setLoading] = useState;
 
     console.log(category, "check my data");
   };
@@ -99,34 +99,16 @@ const Propductindi = (props) => {
       <Box>
         <Grid container spacing={2}>
           <Grid item xs={5}>
-            <Item style={{ paddingLeft: 100 }}>
-              {/* {myData.map((post) => {
-                const {
-                  id,
-                  description,
-                  price,
-                  brand,
-                  title,
-                  category,
-                  thumbnail,
-                  images,
-                } = post;
-                debugger;
-                return ( */}
-              <React.Fragment>
-                <Left
+            
+            <Left
                   thumbnail={myData.thumbnail}
                   price={myData.price}
                   id={myData.id}
                 />
-              </React.Fragment>
-              {/* );
-              })} */}
-            </Item>
           </Grid>
 
           <Grid item xs={7}>
-            <Item style={{ paddingRight: 100 }}>
+          
               <Typography style={{ fontSize: 30 }}>
                 {myData.description}
               </Typography>
@@ -215,7 +197,7 @@ const Propductindi = (props) => {
                   workmanship. <Link>Know More</Link>
                 </Typography>
               </Rating>
-            </Item>
+            
           </Grid>
         </Grid>
       </Box>

@@ -32,7 +32,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "@mui/material";
 import { useDispatch } from "react-redux";
-
+import { useGetProductDataQuery } from "../services/Api";
 import ReactPaginate from "react-paginate";
 
 const drawerWidth = 240;
@@ -41,21 +41,30 @@ const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
 function Productdetail(props) {
+  
   const { window } = props;
 
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const [myData, setMyData] = useState([]);
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-  const [isError, setIsError] = useState("");
+ 
 
-  const RecipeReviewCard = () => {
-    const [myData, setMyData] = useState([]);
-    const [isError, setIsError] = useState("");
-    console.log(myData, "check my data");
-  };
+  const { data, error, isLoading } = useGetProductDataQuery("");
+  const navigate = useNavigate()
+  const navigateToUrl = (path, imageData) => {
+    navigate(path, { state: imageData })
+    console.log(path, imageData);
+  }
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+  if (error) {
+    console.log(error);
+    return <div>Oops, an error occured</div>;
+  }
 
+  
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
     ...theme.typography.body2,
@@ -63,7 +72,7 @@ function Productdetail(props) {
     textAlign: "center",
     color: theme.palette.text.secondary,
   }));
-
+ 
   const Listitemcss = styled(Box)`
     fontsize: 10px;
   `;
@@ -241,18 +250,7 @@ function Productdetail(props) {
   `;
   const container =
     window !== undefined ? () => window().document.body : undefined;
-  useEffect(() => {
-    axios
-      .get("https://dummyjson.com/products")
-      .then((response) => setMyData(response.data))
-      .catch((error) => setIsError(error.message));
-  }, []);
 
-  const [expanded, setExpanded] = React.useState(false);
-
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
 
   return (
     <>
@@ -311,7 +309,7 @@ function Productdetail(props) {
 
           <Box sx={{ flexGrow: 1 }}>
             <Grid container item spacing={3}>
-              {myData?.products?.map((post) => {
+              {data?.products?.map((post) => {
                 const {
                   id,
                   description,
@@ -326,12 +324,15 @@ function Productdetail(props) {
                   <React.Fragment key={id}>
                     {" "}
                     <Grid item xs={4}>
-                      <Item>
+                      <Item
+                       >
                         <Productcard
-                          thumbnail={thumbnail}
-                          price={price}
-                          id={id}
-                          description={description}
+                         
+                          thumbnail={post.thumbnail}
+                          price={post.price}
+                          id={post.id}
+                          description={post.description}
+                         
                         />
                       </Item>
                     </Grid>
@@ -347,6 +348,7 @@ function Productdetail(props) {
 }
 
 Productdetail.propTypes = {
+  
   window: PropTypes.func,
 };
 

@@ -23,15 +23,16 @@ const Placeorder = styled(Box)``;
 const PaymentForm = () => {
   const { data, error, isLoading } = useGetProductDataQuery("");
   console.log({ data });
-  // if (isLoading) {
-  //   return <div>Loading...</div>;
-  // }
-  // if (error) {
-  //   console.log(error);
-  //   return <div>Oops, an error occured</div>;
-  // }
-  // console.log(data);
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+  if (error) {
+    console.log(error);
+    return <div>Oops, an error occured</div>;
+  }
+  console.log(data);
   return (
+    
     <Grid container spacing={2}>
       <Grid item xs={8}>
         <Item style={{ paddingLeft: 200 }}>
@@ -128,7 +129,7 @@ const PaymentForm = () => {
                 style={{ textAlign: "right", fontSize: 20, paddingTop: 30 }}
               >
                 
-
+              {data.price} 
               </Item>
             </Grid>
             <Grid item xs={6}>

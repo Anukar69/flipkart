@@ -43,8 +43,10 @@ const Custombuttons = () => {
   return (
     <Wrapper>
     <Link to ="/login">
+    
       <Loginbuttom variant="contained">Login</Loginbuttom>
       </Link>
+     
      
       <Typography style={{marginLeft :40,  marginTop: 30, width: 180, fontWeight: 600, fontSize : 20 }}>
         Become a Seller

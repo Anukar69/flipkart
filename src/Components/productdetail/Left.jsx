@@ -8,6 +8,7 @@ import Button from "@mui/material/Button";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { NoEncryption } from "@material-ui/icons";
 
 const Item = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(1),
@@ -30,7 +31,7 @@ const Left = (props) => {
   return (
     <>
       <img
-        style={{ height: 500, width: 600 }}
+        style={{ height: 500, width: 600, paddingLeft: 120 }}
         src={props.thumbnail}
         
         alt="product image alt"
@@ -62,7 +63,7 @@ const Left = (props) => {
         
           <Grid item xs={6}>
             <Item>
-              <Link>
+            
                 <Button
                   style={{
                     width: 289,
@@ -72,13 +73,14 @@ const Left = (props) => {
                     backgroundColor: "#ff7943",
                     fontSize: 20,
                     paddingRight:20,
+                    textDecoration: null,
                   }}
                   variant="contained"
                   onClickFunc={incrementCounter}
                 >
                   Add to CART
                 </Button>
-              </Link>
+              
             </Item>
           </Grid>
         </Grid>

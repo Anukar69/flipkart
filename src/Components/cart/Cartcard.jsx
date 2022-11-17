@@ -47,7 +47,7 @@ export default function MediaControlCard(props) {
         <CardContent sx={{ flex: "1 0 auto" }}>
           <Grid container spacing={2}>
             <Grid item xs={6} md={8}>
-              <Item>
+             
                 <Typography component="div" variant="h5">
                   {props.description}
                 </Typography>
@@ -65,10 +65,11 @@ export default function MediaControlCard(props) {
                     35% Off 3 offers applied
                   </span>
                 </Typography>
-              </Item>
+             
             </Grid>
             <Grid item xs={6} md={4}>
-              <Item>Delivery by Thu Oct 27 | Free₹40</Item>
+            <Typography style={{paddingLeft: 60}}>Delivery by Thu Oct 27 | Free₹40</Typography>
+           
             </Grid>
           </Grid>
         </CardContent>
@@ -84,7 +85,8 @@ export default function MediaControlCard(props) {
           </Button>
           </Link>
           <Link to = "/withoutproduct">
-          <Button style={{color: "#000000"}}>
+          <Button style={{color: "#000000", textDecoration: 'none'
+          }}>
           <Typography style={{ fontSize: 25, textTransform: "capitalize" }}>Remove</Typography>
           </Button>
           </Link>

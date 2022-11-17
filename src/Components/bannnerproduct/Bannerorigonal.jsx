@@ -26,20 +26,13 @@ const Image = styled("img")(({ theme }) => ({
     height: 180,
   },
 }));
-const Carouselstyle = styled(Box)``;
-
-const Offerbanner = styled(Box)`
-  height: 150;
-  width: "100%";
+const Carouselstyle = styled(Box)`
+     width: 1680
 `;
-const Offer = styled("img")({
-  width: 1200,
-  height: 170,
-  marginTop: 5,
-  paddingLeft: 300,
-});
+
+
 console.log(bannerData)
-const Banner = () => {
+const Bannerorigonal = () => {
   return (
     <Carouselstyle>
       <Carousel
@@ -56,11 +49,8 @@ const Banner = () => {
         ))}
       </Carousel>
 
-      <Offer
-        src="https://i.ibb.co/QmwVXVF/Screenshot-from-2022-10-11-13-53-40.png"
-        alt="offer"
-      ></Offer>
+      
     </Carouselstyle>
   );
 };
-export default Banner;
+export default Bannerorigonal;
