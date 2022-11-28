@@ -15,7 +15,6 @@ export function Counter() {
       dispatch(decrement());
     }
   };
-
   return (
     <div>
       <div className={styles.row}>

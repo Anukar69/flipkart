@@ -32,8 +32,6 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     fontSize: 14,
   },
 }));
-
-
 function generate(element) {
   return [1].map((value) =>
     React.cloneElement(element, {

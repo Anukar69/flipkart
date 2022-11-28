@@ -13,8 +13,20 @@ import Adress from "./Components/checkout/Adress";
 import Payment from "./Components/checkout/Payment"
 import Cartwithoutp from "./Components/cart/Cartwithoutp"
 import Bannerpro from "./Components/bannnerproduct/Bannerpro";
+import useToken from "./Components/login/useToken";
+
+
 
 function App() {
+
+  const { token, setToken } = useToken();
+  
+ 
+  
+  if(!token) {
+    return <Login setToken={setToken} />
+  }
+
   return (
     <div>
       {/* <Home /> */}
@@ -23,7 +35,7 @@ function App() {
         <Header/>
         <Routes>
           <Route path="/" element={<Home/>} />
-          <Route path="/login" element={<Login/> } />
+        
           <Route path="/productdetail" element={<Productmenu/>} />
           <Route path="singnup" element={<Singnup/>}/>
           <Route path="/Productindividual:id" element={<Productindividual/>}/>
