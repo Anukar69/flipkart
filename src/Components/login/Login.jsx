@@ -1,4 +1,3 @@
-
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -74,6 +73,7 @@ export default function Login({ setToken }) {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
+            <Link to="/">
             <Button
               type="submit"
               fullWidth
@@ -82,6 +82,7 @@ export default function Login({ setToken }) {
             >
               Sign In
             </Button>
+            </Link>
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">

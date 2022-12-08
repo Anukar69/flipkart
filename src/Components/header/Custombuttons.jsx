@@ -6,9 +6,11 @@ import { styled } from "@mui/material/styles";
 import { Link } from "react-router-dom";
 import HoverMenuButton from "./HoverMenuButton";
 import Modal from "@mui/material/Modal";
-import TextField from '@mui/material/TextField';
+import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
-
+import { useRef, useState, useEffect } from "react";
+import PropTypes from "prop-types";
+import useToken from "../login/usetoken";
 const style = {
   position: "absolute",
   top: "50%",
@@ -19,7 +21,7 @@ const style = {
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
-  paddingLeft:50,
+  paddingLeft: 50,
   p: 4,
 };
 const Wrapper = styled(Box)`
@@ -43,7 +45,7 @@ const Loginbuttom = styled(Button)`
   color: #2874f0;
   background: #fff;
   text-transform: none;
-  padding: 5px 40px;
+  padding: 15px 40px;
   border-radius: 2px;
   box-shadow: none;
 
@@ -57,11 +59,25 @@ const Custombuttons = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const [username, setUserName] = useState();
+  const [password, setPassword] = useState();
+
+  console.log(username)
+  const initialText = "Login";
+  const [buttonText, setButtonText] = useState(initialText);
+
+  function handleClick() {
+    setButtonText(username);
+  }
+
+
   return (
     <Wrapper>
+    <Box style={{paddingTop :10}}>
       <Loginbuttom onClick={handleOpen} variant="contained">
-        Login
+        {buttonText}
       </Loginbuttom>
+      </Box>
 
       <Modal
         open={open}
@@ -69,7 +85,7 @@ const Custombuttons = () => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+        <Box sx={style} style={{ padding: "0px" }}>
           <Grid container spacing={2}>
             <Grid
               style={{
@@ -80,29 +96,37 @@ const Custombuttons = () => {
               xs={5}
             >
               <img
-                style={{ objectFit: "cover", paddingTop: 0, paddingLeft: 0 }}
+                style={{
+                  paddingTop: 16,
+                  paddingLeft: 15,
+                  width: 300,
+                  height: 600,
+                }}
                 src="https://i.ibb.co/WN9FCM5/Screenshot-from-2022-11-28-13-03-13.png"
               ></img>
             </Grid>
-            <Grid item xs={7}>
+            <Grid item xs={7} style={{ paddingTop: 40 }}>
               <div class="box">
                 <div class="row">
-                  <div class="col-sm-5 col-xs-1 box1" ></div>
+                  <div class="col-sm-5 col-xs-1 box1"></div>
                   <div class="col-sm-6 col-xs-1 box2">
                     <Box
                       component="form"
                       sx={{
-                        "& > :not(style)": { m: 1, width: "43ch" },
+                        "& > :not(style)": { m: 1, width: "45ch" },
                       }}
                       noValidate
                       autoComplete="off"
                     >
+                    
                       <TextField
                       
-                        id="standard-basic"
-                        label="Enter Email/Mobile Number"
+                        name="firstName"
+                        id="firstName"
+                        label="Enter Username"
                         variant="standard"
-                      /> 
+                        onChange={(e) => setUserName(e.target.value)}
+                      />
                       <br></br>
                       <br></br>
                       <br></br>
@@ -110,30 +134,68 @@ const Custombuttons = () => {
                         id="standard-basic"
                         label="Enter Password"
                         variant="standard"
+                        onChange={(e) => setPassword(e.target.value)}
                       />
                     </Box>
-                  
+
                     <br></br>
-                    
+
                     <br></br>
-                    <span>By continuing, you agree to Flipkart's Terms of Use and Privacy Policy.</span>
+                    <span>
+                      By continuing, you agree to Flipkart's Terms of Use and
+                      Privacy Policy.
+                    </span>
                     <div class="user-id button">
-                    <br></br>
                       <br></br>
-                    <Button  style={{ width: "56ch", height:60, fontSize:15, fontWeight: "bold"}} variant="contained">Login</Button>
-                      
+                      <br></br>
+                      <Button
+                        onClick={() => {
+                          handleClose();
+                          handleClick();
+                   
+                        }}
+                        style={{
+                          width: "50ch",
+                          height: 60,
+                          fontSize: 15,
+                          fontWeight: "bold",
+                          backgroundColor: "#fb641b",
+                        }}
+                        variant="contained"
+                      >
+                        Login
+                      </Button>
                     </div>
-                    <div class="user-id">
-                      <p>OR</p>
-                    </div>
-                    <div class="user-id button">
-                      <input type="reset" name="" id="" value="Request OTP" />
-                    </div>
-                    <div class="user-id">
-                      <p class="footer">
-                        <a href="#">New to Flipkart? Create an account</a>
-                      </p>
-                    </div>
+                    <br></br>
+
+                    <Box style={{ textAlign: "center" }}>
+                      <div style={{ color: "#878787" }} class="user-id">
+                        <p>OR</p>
+                      </div>
+                      <div class="user-id button">
+                        <Button
+                          style={{
+                            width: "50ch",
+                            height: 60,
+                            fontSize: 15,
+                            fontWeight: "bold",
+                          }}
+                          variant="text"
+                        >
+                          Request OTP
+                        </Button>
+                      </div>
+                      <br></br>
+                      <br></br>
+                      <br></br>
+                      <Link to="singnup">
+                        <div class="user-id" onClick={handleClose}>
+                          <p class="footer">
+                            <a href="#">New to Flipkart? Create an account</a>
+                          </p>
+                        </div>
+                      </Link>
+                    </Box>
                   </div>
                 </div>
               </div>
@@ -144,8 +206,8 @@ const Custombuttons = () => {
 
       <Typography
         style={{
-          marginLeft: 40,
-          marginTop: 30,
+        paddingLeft:25,
+          paddingTop: 15,
           width: 180,
           fontWeight: 600,
           fontSize: 20,
@@ -153,17 +215,17 @@ const Custombuttons = () => {
       >
         Become a Seller
       </Typography>
-      <Typography style={{ marginTop: 30, fontWeight: 600, fontSize: 20 }}>
+      <Typography style={{ paddingLeft:15, paddingTop: 15, fontWeight: 600, fontSize: 20 }}>
         {" "}
         More
       </Typography>
       <Link
         to="cartmain:id"
-        style={{ color: "#FFFFFF", paddingTop: 30, textDecoration: "none" }}
+        style={{ color: "#FFFFFF", paddingTop: 15, textDecoration: "none" }}
       >
-        <Container>
+        <Container style={{ paddingLeft:10}}>
           <ShoppingCartIcon />
-          <Typography style={{ fontWeight: 600, fontSize: 20 }}>
+          <Typography style={{  fontWeight: 600, fontSize: 20 }}>
             Cart
           </Typography>
         </Container>
